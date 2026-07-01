@@ -1,0 +1,90 @@
+# 🧠 Documentação Técnica - Case Engenharia de Dados
+
+## 📌 Visão Geral
+
+Este projeto implementa um pipeline de dados em arquitetura medalhão (Bronze, Silver e Gold), utilizando Databricks e PySpark para transformar dados brutos em um modelo analítico estruturado para consumo por BI.
+
+---
+
+## 🏗️ Arquitetura da Solução
+
+### 🔹 Bronze
+Camada de ingestão dos dados brutos, mantendo o formato original das fontes.
+
+### 🔹 Silver
+Camada de tratamento e padronização:
+- Normalização de textos
+- Padronização de datas em múltiplos formatos
+- Conversão de tipos de dados
+- Remoção de duplicidades
+- Tratamento de inconsistências
+
+### 🔹 Gold
+Camada analítica final:
+- Modelo estrela (fact + dimensões)
+- Tabelas otimizadas para consumo analítico
+- Métricas derivadas
+
+---
+
+## 📊 Modelo de Dados
+
+### Fato Principal
+- fact_pedidos
+  - Granularidade: item do pedido
+  - Métrica principal: receita bruta (quantity × unit_price)
+
+### Dimensões
+- dim_cliente
+- dim_produto
+- dim_vendedor
+- dim_regiao
+- dim_canal
+- dim_entrega (operacional)
+
+---
+
+## 🔧 Transformações Aplicadas
+
+- Parsing seguro de datas em múltiplos formatos (ISO, BR, variações com e sem timestamp)
+- Padronização de campos categóricos (uppercase/lowercase/title case)
+- Tratamento de valores numéricos inconsistentes (ex: 5.0, -1.0)
+- Conversões seguras evitando falhas de casting
+- Uso de joins controlados para evitar duplicidade de registros
+
+---
+
+## 📐 Decisões de Modelagem
+
+- A fact foi definida no nível de item de pedido para permitir análises detalhadas
+- Dimensões foram conformadas para permitir análise cruzada (cliente, produto, vendedor)
+- Evitou-se enriquecimento excessivo na fact para manter performance e clareza
+- Priorizado modelo estrela para consumo direto por BI
+
+---
+
+## 📊 Qualidade de Dados
+
+Foram identificados e tratados:
+- Datas em múltiplos formatos inconsistentes
+- Valores numéricos inválidos ou com formatação incorreta
+- Colunas ausentes em algumas etapas intermediárias
+- Possíveis duplicidades de registros
+
+---
+
+## ⚠️ Limitações
+
+- Algumas dimensões derivadas de atributos categóricos
+- Ausência de geolocalização detalhada
+- Parte dos atributos de negócio não normalizados na origem
+
+---
+
+## 🚀 Resultado Final
+
+O pipeline entrega um modelo analítico consistente, escalável e pronto para consumo por ferramentas de BI, permitindo análises de:
+- Receita
+- Volume de pedidos
+- Performance por produto, cliente e vendedor
+- Análise temporal de vendas
