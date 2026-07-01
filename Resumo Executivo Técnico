@@ -1,0 +1,83 @@
+# 📊 Resumo Executivo Técnico - Case Engenharia de Dados
+
+## 🎯 Objetivo do Projeto
+
+Construir uma solução de engenharia de dados capaz de transformar dados brutos dispersos em uma base analítica estruturada, confiável e pronta para consumo por equipes de BI.
+
+---
+
+## 🏗️ Solução Implementada
+
+Foi desenvolvida uma arquitetura em três camadas:
+
+### 🔹 Bronze
+Ingestão dos dados originais sem alterações estruturais.
+
+### 🔹 Silver
+Tratamento e padronização dos dados:
+- Correção de formatos inconsistentes de data
+- Normalização de campos textuais
+- Limpeza e conversão de tipos
+- Deduplicação de registros
+
+### 🔹 Gold
+Modelagem analítica final baseada em:
+- Modelo estrela
+- Tabela fato de pedidos (nível item)
+- Dimensões conformadas
+
+---
+
+## 📊 Principais Entregas
+
+### Modelo Analítico
+- fact_pedidos (tabela fato principal)
+- dim_cliente
+- dim_produto
+- dim_vendedor
+- dim_regiao
+- dim_canal
+
+---
+
+## 📈 KPIs Possibilitados
+
+A solução permite análises de:
+
+- Receita total e por segmento
+- Volume de pedidos
+- Ticket médio
+- Performance por região
+- Performance por produto e vendedor
+- Evolução temporal de vendas
+
+---
+
+## 🧠 Principais Decisões Técnicas
+
+- Uso de arquitetura medalhão (Bronze/Silver/Gold)
+- Modelagem em estrela para consumo analítico
+- Tratamento robusto de inconsistências de dados
+- Garantia de joins controlados para evitar duplicidade
+- Padronização de dados antes da camada analítica
+
+---
+
+## ⚠️ Desafios Encontrados
+
+- Inconsistência em formatos de data (ISO, BR, variações com timestamp)
+- Valores numéricos inválidos ou mal formatados
+- Diferença de estrutura entre fontes
+- Necessidade de adaptação contínua do schema durante o desenvolvimento
+
+---
+
+## 🚀 Resultado Final
+
+O projeto entrega uma base analítica confiável, escalável e pronta para consumo, permitindo que áreas de negócio realizem análises de performance de forma simples, direta e consistente.
+
+---
+
+## 📌 Conclusão
+
+A solução atende aos requisitos de engenharia de dados ao estruturar um pipeline robusto, com foco em qualidade, organização e usabilidade para análise de negócio.
